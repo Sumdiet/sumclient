@@ -1,7 +1,7 @@
 import CoutingMacroProps from './type'
 import './style.sass'
 export default function CoutingMacro(props: CoutingMacroProps) {
-    const water = props.goalMacro.water! || 0;
+    const water = props.goalMacro.water! || 0
     const protein = props.goalMacro.protein! || 0;
     const carb = props.goalMacro.carbs! || 0;
     const fat = props.goalMacro.fat! || 0;

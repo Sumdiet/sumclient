@@ -12,7 +12,7 @@ export default function Login() {
     const [credencial, setCredencial] = useState({ email: '', password: '' } as AuthUser);
     const [autenticacaoFalhou, setAutenticacaoFalhou] = useState(false);
     const navigate = useNavigate();
-    const {setUser} = React.useContext(HomeContext);
+    // const {setUser} = React.useContext(HomeContext);
     const logar = (event: { preventDefault: () => void; }) => {
         event.preventDefault()
         setAutenticacaoFalhou(false);
@@ -20,7 +20,9 @@ export default function Login() {
             .then((res) => {
                 if (res) {
                     setAutenticacaoFalhou(false);
-                    setUser(res as UserFinded);
+                    // setUser(res!);
+                    localStorage.setItem('idUser', (res as UserFinded).userId.toString());
+                    localStorage.setItem('token', (res as UserFinded).token);
                     if ((res as UserFinded).userInformation !== null) {
                         navigate('/home');
                     } else  {

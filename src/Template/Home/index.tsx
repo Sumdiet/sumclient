@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CoutingMacro from '../../Components/CoutingMacro'
 import Header from '../../Components/Header'
 import PieChartComponent from '../../Components/PieChart'
@@ -6,11 +6,22 @@ import ProgressArc from '../../Components/ProgressArc'
 import Resume from '../../Components/Resume'
 import { HomeContext } from '../../Context/HomeContext'
 import './style.sass'
+import { useEffect } from 'react'
 import MealList from '../../Components/MealList'
+import { RequestsClient } from '../../API/RequestsClient'
 export default function Home() {
-    const { user } = React.useContext(HomeContext);
-    
+    const { user, setUser, reload } = React.useContext(HomeContext);
+    useEffect(() => {
+        const id =  localStorage.getItem('idUser');
+        RequestsClient.getLogedUserAsync(Number(id)).then((res) => {
+            setUser(res!);
+        });
+        
+    }, [reload])
+
+   
     return(
+        user?.macroGoal && <>
             <section id='home'>
                 <div id="header">
                     <Header/>
@@ -33,6 +44,6 @@ export default function Home() {
                     </div>
                 </div>
                 <div id="footer">Footer</div>
-            </section>
+            </section> </>
     )
 }

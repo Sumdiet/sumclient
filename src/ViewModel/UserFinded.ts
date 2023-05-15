@@ -10,4 +10,5 @@ export interface UserFinded  {
     macroGoal: Macro;
     currentMacro: Macro
     meals: Meal[]
+    token:string
 }

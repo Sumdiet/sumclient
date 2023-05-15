@@ -6,6 +6,6 @@ export default interface Meal {
     mealName: string,
     meaTime: string,
     macroGoal: Macro,
-    registredFood: RegistredFood[]
+    registeredFood: RegistredFood[]
 
 }
