@@ -7,12 +7,20 @@ import { RequestsClient } from '../../API/RequestsClient';
 import { AuthUser } from '../../ViewModel/AuthUser';
 import { UserFinded } from '../../ViewModel/UserFinded';
 import { HomeContext } from '../../Context/HomeContext';
+import Signup from '../../Components/SignUp';
+
 
 export default function Login() {
     const [credencial, setCredencial] = useState({ email: '', password: '' } as AuthUser);
     const [autenticacaoFalhou, setAutenticacaoFalhou] = useState(false);
+    const [signup, setSignUp] = useState(false);
     const navigate = useNavigate();
     // const {setUser} = React.useContext(HomeContext);
+    const handleSignup = () => {
+        setSignUp (
+            !signup
+        )
+    }
     const logar = (event: { preventDefault: () => void; }) => {
         event.preventDefault()
         setAutenticacaoFalhou(false);
@@ -38,12 +46,12 @@ export default function Login() {
             <section id='login'>
                 <div id="bannerSide">
                 </div>
-                <div id='actionSide'>
+                 <div  id='actionSide'>
                     <div id="header">
-                        <label>Ainda não possui uma conta?</label>
-                        <button>Crie uma conta</button>
+                        <label>{signup? 'Já possui uma conta? ' : 'Ainda não possui uma conta?'}</label>
+                        <button onClick={handleSignup}>{signup? 'Entrar': 'Crie uma conta'}</button>
                     </div>
-                    <div id="core">
+{signup?<Signup></Signup>: <div id="core">
                         <div id="logo">
                             <img src={logo}></img>
                         </div>
@@ -70,7 +78,7 @@ export default function Login() {
                             <button onClick={logar}>Entrar</button>
                             <span>Esqueceu sua senha?</span>
                         </div>
-                    </div>
+                    </div> }
                 </div>
             </section>
     )

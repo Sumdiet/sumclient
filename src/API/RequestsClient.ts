@@ -5,6 +5,21 @@ import Api from "./ApiConfig"
 import RegistredFood from "../model/RegistredFood";
 import useDate from "../Utils/useData";
 import Food from "../model/Food";
+import CreateUser from "../ViewModel/CreateUser";
+
+const createUser = async(user: CreateUser) => {
+    const jwtStr = localStorage.getItem('token')
+    return await Api().post('/api/v1/user/create', user, {
+        'headers': {
+          'Authorization': 'Bearer ' + jwtStr
+        }}).then((res)=> {
+            if (res.status == 200) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+};
 
 const postLogin = async (login: AuthUser) => {
     login.date = useDate()
@@ -84,4 +99,5 @@ export const RequestsClient = {
    getLogedUserAsync,
    postRegisterFood,
    deleteRegisterFood,
+   createUser,
 }
