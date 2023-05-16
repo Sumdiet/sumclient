@@ -11,22 +11,36 @@ import { RequestsClient } from '../../API/RequestsClient';
 import { UserFinded } from '../../ViewModel/UserFinded';
 import { HomeContext } from '../../Context/HomeContext';
 import useDate from '../../Utils/useData';
+import RegisterFoodItem from '../RegisterFoodItem';
+import Food from '../../model/Food';
 export default function MealCard(props: MealCardProps) {
     const [expanded, setExpanded] = useState(false);
-    const [properties] = useState(props);
     const [registerForm, setRegisterForm] = useState(false);
-    const { setReload, reload } = React.useContext(HomeContext);
+    const { setReload, reload,date } = React.useContext(HomeContext);
     const [formData, setFormData] = useState({} as RegistredFood);
+    const [food, setFood] =useState([] as Food[]);
     function toggleExpanded() {
         setExpanded(!expanded);
     }
 
     const registerFood = () => {
         const userId = localStorage.getItem('idUser')
-        const registerFoodVm = {...formData, userId: Number(userId), mealId:properties.mealId, date:useDate()} as RegistredFood;
+        const registerFoodVm = {...formData, userId: Number(userId), mealId:props.mealId, date:date} as RegistredFood;
         RequestsClient.postRegisterFood(registerFoodVm).then(() => {
             setReload(!reload);
         });
+    }
+    const listarAlimento = () => {
+        const row: JSX.Element[] = [];
+        if(!food.length) {
+            RequestsClient.getFood().then((foodList) =>{
+                setFood(foodList)
+            });
+        }
+        food.map(food => {
+            row.push( <option key={food.foodId} value={food.foodId}>{food.foodName}</option>)
+        })
+        return row;
     }
     
 
@@ -39,19 +53,19 @@ export default function MealCard(props: MealCardProps) {
     }
 
     const handleFood = (event: { target: { value: any; }; }) => {
-        setFormData({ ...formData, foodId: event.target.value })
+        setFormData({ ...formData, foodId: food.find(food => food.foodId = event.target.value,)!.foodId })
     }
+    
 
 
     const registredFood = () => {
-        console.log(props)
         const row: JSX.Element[] = [];
-        if (properties.registeredFood != null) {
-            properties.registeredFood.forEach(registeredFood => {
+        if (props.registeredFood != null) {
+            props.registeredFood.forEach(registeredFood => {
                 if (registeredFood.mealId  == props.mealId) {
                     row.push(
-                        <li><div className='list-item'><span>{registeredFood.food.foodName}</span><div className='tail'><span>{registeredFood.quantity}</span><MdOutlineDeleteOutline/></div></div></li>)
-                }
+                        <RegisterFoodItem registerFood={registeredFood}></RegisterFoodItem>
+                    )}
             })
         }
         return row;
@@ -98,7 +112,14 @@ export default function MealCard(props: MealCardProps) {
                             <label>Quantidade</label>
                             <input className='register-food-input' type="text" onChange={handleQuantity}/>
                             <label>Alimento</label>
-                            <input className='register-food-input' type="text" onChange={handleFood}/>
+                            <select className='register-food-input'
+                                name='food'
+                                onChange={handleFood}
+                                defaultValue={formData.foodId}
+                            >
+                                <option value="0" key='0'>Selecionar alimento</option>
+                                 {listarAlimento()}
+                            </select>
                             <button onClick={registerFood}>Adicionar</button>
                         </div>}
                     <ul className="list" >

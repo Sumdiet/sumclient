@@ -4,6 +4,7 @@ import { AuthUser } from "../ViewModel/AuthUser";
 import Api from "./ApiConfig"
 import RegistredFood from "../model/RegistredFood";
 import useDate from "../Utils/useData";
+import Food from "../model/Food";
 
 const postLogin = async (login: AuthUser) => {
     login.date = useDate()
@@ -39,6 +40,24 @@ const getLogedUserAsync = async (idUser: number, date?: string) => {
     return resApi;
 }
 
+const deleteRegisterFood = async (id: number) => {
+    const jwtStr = localStorage.getItem('token');
+    await Api().delete(`api/v1/registeredfood/${id}`,{
+        'headers': {
+          'Authorization': 'Bearer ' + jwtStr
+        }}).then((res)=> {
+            return res.data;
+        });
+}
+
+const getFood = async () => {
+    let resApi: Food[] = [];
+    await Api().get('api/v1/food').then((res) =>{
+        resApi = res.data;
+    });
+    return resApi;
+}
+
 const postRegisterFood = async (registerFood: RegistredFood) => {
      let resApi;
     const jwtStr = localStorage.getItem('token');
@@ -61,6 +80,8 @@ const postRegisterFood = async (registerFood: RegistredFood) => {
 
 export const RequestsClient = {
    postLogin,
+   getFood,
    getLogedUserAsync,
    postRegisterFood,
+   deleteRegisterFood,
 }

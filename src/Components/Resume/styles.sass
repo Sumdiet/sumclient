@@ -6,11 +6,13 @@
     padding: 1rem
     display: flex
     flex-direction: column
+    
     #header
         display: flex
         width: 100%
         justify-content: center
         color:#fff
+   
     #resume-values
         width: 100%
         display: flex
@@ -21,6 +23,23 @@
             justify-content: center
             align-items: center
             text-align: center
+            position: relative
+            width: 100%
+            #calendar-input
+                width: 350px
+                padding: .3rem 0
+            .fc
+                position: absolute
+                top: 5rem
+                padding: 1rem
+                width: 100%
+                background-color:  #83BF73
+                .fc-daygrid-day-events
+                    display: none !important
+                .fc-col-header
+                    width: 100% !important
+                .fc-scrollgrid-sync-table
+                    width: 100% !important
             .values
                 h3
                     color: #fff

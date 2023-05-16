@@ -5,4 +5,6 @@ export default interface HomeContextType {
     user: UserFinded | undefined;
     reload: boolean;
     setReload: React.Dispatch<React.SetStateAction<boolean>>
+    date: string,
+    setDate: React.Dispatch<React.SetStateAction<string>>
 }

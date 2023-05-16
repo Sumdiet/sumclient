@@ -1,11 +1,14 @@
 import ResumeProps from './type'
 import './styles.sass'
+import Calendar from '../Calendar';
+import React, { useState } from 'react';
+import { HomeContext } from '../../Context/HomeContext';
 export default function Resume(props: ResumeProps) {
     const mealDone = () => {
         let countDone = 0;
         let countRest = 0;
         props.meals.forEach((meal) => {
-            if (meal.registredFood) {
+            if (meal.registeredFood.length) {
                 countDone++;
             } else {
                 countRest++;
@@ -13,7 +16,12 @@ export default function Resume(props: ResumeProps) {
         });
         return [countDone, countRest];
     }
+    const [openedCalendar, setOpenedCalendar] = useState(false);
+    const { date } = React.useContext(HomeContext);
     const result = mealDone();
+    const handleOpenedCalendar = () => {
+        setOpenedCalendar(!openedCalendar);
+    }
     return (
         <div id="resume">
             <div id='header'>
@@ -26,11 +34,15 @@ export default function Resume(props: ResumeProps) {
                         <p>Sua meta diária</p>
                     </div>
                     <div className='values'>
-                        <h3>{props.currentGoal.kcal} Kcal</h3>
+                        <h3>{props.currentGoal.kcal || '0'} Kcal</h3>
                         <p>Valor consumido</p>
                     </div>
                 </div>
 
+                <div className='box-values'>
+                    <input id='calendar-input' type='button' value={date} onClick={handleOpenedCalendar}/>
+                    {openedCalendar ? <Calendar/> :<></>}
+                </div>
                 <div className='box-values'>
                     <div className='values'>
                         <h3>{result[0]}</h3>

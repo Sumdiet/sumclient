@@ -10,10 +10,10 @@ import { useEffect } from 'react'
 import MealList from '../../Components/MealList'
 import { RequestsClient } from '../../API/RequestsClient'
 export default function Home() {
-    const { user, setUser, reload } = React.useContext(HomeContext);
+    const { user, setUser, reload, date } = React.useContext(HomeContext);
     useEffect(() => {
         const id =  localStorage.getItem('idUser');
-        RequestsClient.getLogedUserAsync(Number(id)).then((res) => {
+        RequestsClient.getLogedUserAsync(Number(id), date ).then((res) => {
             setUser(res!);
         });
         
@@ -40,7 +40,7 @@ export default function Home() {
                 <div id="central">
                     <Resume meals={user.meals} macroGaol={user.macroGoal} currentGoal={user.currentMacro}/>
                     <div className='meal-cards'>
-                        <MealList  meals={user.meals}/>
+                        <MealList />
                     </div>
                 </div>
                 <div id="footer">Footer</div>

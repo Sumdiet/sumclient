@@ -3,7 +3,7 @@ import MealCard from "../MealCard";
 import MealListProps from "./type";
 import React from 'react'
 
-export default function MealList(props: MealListProps) {
+export default function MealList() {
 
   const { user } = React.useContext(HomeContext);
     const rows: JSX.Element[] = [];
