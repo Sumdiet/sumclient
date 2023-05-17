@@ -31,11 +31,11 @@ export default function Login() {
                     // setUser(res!);
                     localStorage.setItem('idUser', (res as UserFinded).userId.toString());
                     localStorage.setItem('token', (res as UserFinded).token);
-                    if ((res as UserFinded).userInformation !== null) {
+                    // if ((res as UserFinded).userInformation !== null) {
                         navigate('/home');
-                    } else  {
-                        navigate('/questionario');
-                    }
+                    // } else  {
+                    //     // navigate('/questionario');
+                    // }
                 }
                 else
                     setAutenticacaoFalhou(true);
