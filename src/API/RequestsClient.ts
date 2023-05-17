@@ -73,6 +73,7 @@ const getFood = async () => {
     return resApi;
 }
 
+
 const postRegisterFood = async (registerFood: RegistredFood) => {
      let resApi;
     const jwtStr = localStorage.getItem('token');
