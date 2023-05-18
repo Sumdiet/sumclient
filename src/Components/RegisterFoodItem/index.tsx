@@ -12,6 +12,6 @@ export default function RegisterFoodItem(props: RegisterFoodItemProps) {
         });
     }
     return (
-        <li><div className='list-item'><span>{props.registerFood.food.foodName}</span><div className='tail'><span>{props.registerFood.quantity}</span><button onClick={removeRegistredFood}><MdOutlineDeleteOutline/></button></div></div></li>
+        <li><div className='list-item'><span>{props.registerFood.food.foodName}</span><div className='tail'><span>{props.registerFood.quantity}g</span><button onClick={removeRegistredFood}><MdOutlineDeleteOutline/></button></div></div></li>
             )
 }

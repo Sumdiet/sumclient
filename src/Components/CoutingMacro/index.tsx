@@ -21,20 +21,23 @@ export default function CoutingMacro(props: CoutingMacroProps) {
 
     return(
         <section className='macros'>
-            <div className='macro-container'>    
-                <div className="card-macro">
-                    <h1>
-                        Água
-                    </h1>
-                    <div className='values'>
-                        <span>
-                            {props.water || 0}ml / {water}ml
-                        </span>
-                        <div id='water'></div>
-                    </div>
-                </div>  
-                    <button className='water-button' onClick={handleAddWater}>+</button>
-            </div>   
+            <div className='teste'>
+                <div className='macro-container'>    
+                    <div className="card-macro">
+                        <h1>
+                            Água
+                        </h1>
+                        <div className='values'>
+                            <span>
+                                {parseFloat(props.water || 0).toFixed(2)}ml / {water}ml
+                            </span>
+                            <div id='water'></div>
+                        </div>
+                    </div>  
+                        <button className='water-button' onClick={handleAddWater}>+</button>
+                </div>
+                
+            </div>
             <div className='macro-container'> 
                 <div className="card-macro">
                     <h1>
@@ -42,7 +45,7 @@ export default function CoutingMacro(props: CoutingMacroProps) {
                     </h1>
                     <div className='values'>
                         <span>
-                        {props.currentMacro.protein || 0}g / {protein}g
+                        {parseFloat(props.currentMacro.protein || 0).toFixed(2)}g / {protein}g
                         </span>
                         <div id='protein'></div>
                     </div>
@@ -56,7 +59,7 @@ export default function CoutingMacro(props: CoutingMacroProps) {
                     </h1>
                     <div className='values'>
                         <span>
-                        {props.currentMacro.carbs || 0}g / {carb}g
+                        {parseFloat(props.currentMacro.carbs || 0).toFixed(2)}g / {carb}g
                         </span>
                         <div id='carb'></div>
                     </div>
@@ -70,7 +73,7 @@ export default function CoutingMacro(props: CoutingMacroProps) {
                     </h1>
                     <div className='values'>
                         <span>
-                        {props.currentMacro.fat || 0}g / {fat}g
+                        {parseFloat(props.currentMacro.fat || 0).toFixed(2)}g / {fat}g
                         </span>
                         <div id='fat'></div>
                     </div>
