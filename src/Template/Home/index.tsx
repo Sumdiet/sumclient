@@ -31,7 +31,7 @@ export default function Home() {
                         <ProgressArc currentMacro={user.currentMacro} goalMacro={user.macroGoal}/>
                     </div>
                     <div className='box-shadow'>
-                        <CoutingMacro goalMacro={user.macroGoal} currentMacro={user.currentMacro}/>
+                        <CoutingMacro goalMacro={user.macroGoal} currentMacro={user.currentMacro} water={user.water}/>
                     </div>
                     <div className='box-shadow'>
                         <PieChartComponent currentMacro={user.currentMacro}/>
