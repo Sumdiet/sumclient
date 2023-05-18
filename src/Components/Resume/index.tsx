@@ -40,7 +40,7 @@ export default function Resume(props: ResumeProps) {
                 </div>
 
                 <div className='box-values'>
-                    <input id='calendar-input' type='button' value={date} onClick={handleOpenedCalendar}/>
+                    <button id='calendar-input' onClick={handleOpenedCalendar}>{date} </button>
                     {openedCalendar ? <Calendar/> :<></>}
                 </div>
                 <div className='box-values'>
