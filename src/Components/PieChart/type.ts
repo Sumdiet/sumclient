@@ -1,5 +1,5 @@
-import Macro from "../../model/Macro";
+// import Macro from "../../model/Macro";
 
-export default interface PieChartProps {
-   currentMacro: Macro;
-}
+// export default interface PieChartProps {
+//    currentMacro: Macro;
+// }

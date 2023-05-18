@@ -32,6 +32,7 @@ export default function Home() {
             <section id='home'>
                 <div id="header">
                     <Header/>
+
                 </div>
                 <div id="lateral">
                     <div className='box-shadow'>

@@ -27,6 +27,7 @@ export default function MealCard(props: MealCardProps) {
             setReload(!reload);
             setRegisterForm(!registerForm);
         });
+        setFormData({foodId:0} as RegistredFood)
     }
 
     
@@ -42,13 +43,10 @@ export default function MealCard(props: MealCardProps) {
     },[reload])
 
     const listarAlimento = () => {
-        // const row: JSX.Element[] = [];
         return(
         food.map(food => {
           return   <option key={food.foodId} value={food.foodId}>{food.foodName}</option>
         }))
-        // console.log(row);
-        // return row;
     }
     
 
@@ -61,6 +59,8 @@ export default function MealCard(props: MealCardProps) {
     }
 
     const handleFood = (event: { target: { value: any; }; }) => {
+        setFood([]);
+        setReload(!reload);
         setFormData({ ...formData, foodId: food.find(food => food.foodId = event.target.value,)!.foodId })
     }
     
@@ -123,9 +123,9 @@ export default function MealCard(props: MealCardProps) {
                             <select className='register-food-input'
                                 name='food'
                                 onChange={handleFood}
-                                defaultValue={formData.foodId}
+                                value={formData.foodId}
                             >
-                                <option value="0" key='0'>Selecionar alimento</option>
+                                <option value='0' key='0'>Selecionar alimento</option>
                                  {listarAlimento()}
                             </select>
                             <button onClick={registerFood}>Adicionar</button>
