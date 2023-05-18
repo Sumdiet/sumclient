@@ -8,6 +8,12 @@ export default function ProgressArc(props: ProgressProps) {
     //     setText(`${props.currentMacro.kcal} Kcal`)
     // },[text, progress]);
 
+    
+    // if(parseFloat(props.currentMacro.kcal) > parseFloat(props.goalMacro.kcal)) {
+    //     const teste = parseFloat(props.currentMacro.kcal) - 2800
+    //     alert(`Você ultrapassou: ${teste} da sua meta diaria!`)
+    // }
+
     return(
         <ArcProgress
             progress={props.currentMacro.kcal ? Number(props.currentMacro.kcal.replace(',','.')) / Number(props.goalMacro.kcal.replace(',','.')) : 0}
