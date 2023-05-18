@@ -30,17 +30,27 @@ export default function MealCard(props: MealCardProps) {
             setReload(!reload);
         });
     }
-    const listarAlimento = () => {
-        const row: JSX.Element[] = [];
+
+    
+
+    useEffect(() => {
         if(!food.length) {
             RequestsClient.getFood().then((foodList) =>{
+                console.log('food', foodList)
+                setReload(!reload)
                 setFood(foodList)
             });
         }
+    },[reload])
+
+    const listarAlimento = () => {
+        // const row: JSX.Element[] = [];
+        return(
         food.map(food => {
-            row.push( <option key={food.foodId} value={food.foodId}>{food.foodName}</option>)
-        })
-        return row;
+          return   <option key={food.foodId} value={food.foodId}>{food.foodName}</option>
+        }))
+        // console.log(row);
+        // return row;
     }
     
 
@@ -61,7 +71,7 @@ export default function MealCard(props: MealCardProps) {
     const registredFood = () => {
         const row: JSX.Element[] = [];
         if (props.registeredFood != null) {
-            props.registeredFood.forEach(registeredFood => {
+             props.registeredFood.forEach(registeredFood => {
                 if (registeredFood.mealId  == props.mealId) {
                     row.push(
                         <RegisterFoodItem registerFood={registeredFood}></RegisterFoodItem>

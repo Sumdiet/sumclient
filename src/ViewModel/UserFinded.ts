@@ -11,4 +11,5 @@ export interface UserFinded  {
     currentMacro: Macro
     meals: Meal[]
     token:string
+    water: number
 }

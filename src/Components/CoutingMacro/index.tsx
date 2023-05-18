@@ -28,7 +28,7 @@ export default function CoutingMacro(props: CoutingMacroProps) {
                     </h1>
                     <div className='values'>
                         <span>
-                            {props.currentMacro.water || 0}ml / {water}ml
+                            {props.water || 0}ml / {water}ml
                         </span>
                         <div id='water'></div>
                     </div>
