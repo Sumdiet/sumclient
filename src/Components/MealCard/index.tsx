@@ -4,20 +4,17 @@ import MealCardProps from './type'
 import { useEffect } from 'react'
 import { useState } from 'react';
 import {IoMdAddCircle} from 'react-icons/io'
-import {MdOutlineDeleteOutline} from 'react-icons/md'
 import RegistredFood from '../../model/RegistredFood';
 import React from 'react'
 import { RequestsClient } from '../../API/RequestsClient';
-import { UserFinded } from '../../ViewModel/UserFinded';
 import { HomeContext } from '../../Context/HomeContext';
-import useDate from '../../Utils/useData';
 import RegisterFoodItem from '../RegisterFoodItem';
 import Food from '../../model/Food';
 export default function MealCard(props: MealCardProps) {
     const [expanded, setExpanded] = useState(false);
     const [registerForm, setRegisterForm] = useState(false);
     const { setReload, reload,date } = React.useContext(HomeContext);
-    const [formData, setFormData] = useState({} as RegistredFood);
+    const [formData, setFormData] = useState({foodId:0} as RegistredFood);
     const [food, setFood] =useState([] as Food[]);
     function toggleExpanded() {
         setExpanded(!expanded);
@@ -28,6 +25,7 @@ export default function MealCard(props: MealCardProps) {
         const registerFoodVm = {...formData, userId: Number(userId), mealId:props.mealId, date:date} as RegistredFood;
         RequestsClient.postRegisterFood(registerFoodVm).then(() => {
             setReload(!reload);
+            setRegisterForm(!registerForm);
         });
     }
 

@@ -9,12 +9,19 @@ import './style.sass'
 import { useEffect } from 'react'
 import MealList from '../../Components/MealList'
 import { RequestsClient } from '../../API/RequestsClient'
+import { useNavigate } from 'react-router-dom'
 export default function Home() {
     const { user, setUser, reload, date } = React.useContext(HomeContext);
+    const navigate = useNavigate();
     useEffect(() => {
         const id =  localStorage.getItem('idUser');
+        
+            
         RequestsClient.getLogedUserAsync(Number(id), date ).then((res) => {
             setUser(res!);
+        }).catch(() =>{
+            navigate('/');
+            return;
         });
         
     }, [reload])
