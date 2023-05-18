@@ -1,27 +1,34 @@
 import CoutingMacroProps from './type'
 import './style.sass'
 import axios from 'axios';
+import { useState } from 'react';
+
 export default function CoutingMacro(props: CoutingMacroProps) {
     const water = props.goalMacro.water! || 0
     const protein = props.goalMacro.protein! || 0;
     const carb = props.goalMacro.carbs! || 0;
     const fat = props.goalMacro.fat! || 0;
 
-    const handleAddWater = async () => {
-        try {
-          const response = await axios.post('/api/v1/food', { water: 100 }); 
-              console.log(response.data); 
+    const [expanded, setExpanded] = useState(false);
+    
+    function toggleExpanded() {
+        setExpanded(!expanded);
+    }
+    
+    // const handleAddWater = async () => {
+    //     try {
+    //       const response = await axios.post('/api/v1/food', { water: 100 }); 
+    //           console.log(response.data); 
 
-          // const updatedWaterValue = response.data.water;
-          // props.setCurrentMacro({ ...props.currentMacro, water: updatedWaterValue });
-        } catch (error) {
-          console.error('Erro ao adicionar água:', error);
-        }
-      };
+    //       // const updatedWaterValue = response.data.water;
+    //       // props.setCurrentMacro({ ...props.currentMacro, water: updatedWaterValue });
+    //     } catch (error) {
+    //       console.error('Erro ao adicionar água:', error);
+    //     }
+    //   };
 
     return(
         <section className='macros'>
-            <div className='teste'>
                 <div className='macro-container'>    
                     <div className="card-macro">
                         <h1>
@@ -34,10 +41,17 @@ export default function CoutingMacro(props: CoutingMacroProps) {
                             <div id='water'></div>
                         </div>
                     </div>  
-                        <button className='water-button' onClick={handleAddWater}>+</button>
+                        <button onClick={() => {toggleExpanded()}} id="buttonExpand">+</button>
                 </div>
-                
-            </div>
+        {expanded &&    
+                    <div id='teste'>
+                        <div id='newTeste'>
+                            <input id='inputData'></input>
+                            <button id='addButton'>Adicionar</button>
+                        </div>
+                    </div>    
+                    
+        } 
             <div className='macro-container'> 
                 <div className="card-macro">
                     <h1>

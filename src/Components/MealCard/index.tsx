@@ -86,7 +86,7 @@ export default function MealCard(props: MealCardProps) {
                     <span>
                         {props.mealTime}
                     </span>
-                    <BsChevronDown onClick={() => toggleExpanded()} className="icon"></BsChevronDown>
+                    <BsChevronDown cursor = 'pointer' onClick={() => toggleExpanded()} className="icon"></BsChevronDown>
                 </div>
                 <div className="meal-name">
                     <h2>
