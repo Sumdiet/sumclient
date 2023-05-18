@@ -30,11 +30,11 @@ export default function Resume(props: ResumeProps) {
             <div id='resume-values'>
                 <div className='box-values'>
                     <div className='values'> 
-                        <h3>{props.macroGaol.kcal} Kcal</h3>
+                        <h3>{parseFloat(props.macroGaol.kcal).toFixed(2)} Kcal</h3>
                         <p>Sua meta diária</p>
                     </div>
                     <div className='values'>
-                        <h3>{props.currentGoal.kcal || '0'} Kcal</h3>
+                        <h3>{parseFloat(props.currentGoal.kcal || '0').toFixed(2)} Kcal</h3>
                         <p>Valor consumido</p>
                     </div>
                 </div>

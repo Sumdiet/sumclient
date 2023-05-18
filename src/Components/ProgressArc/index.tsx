@@ -11,7 +11,7 @@ export default function ProgressArc(props: ProgressProps) {
     return(
         <ArcProgress
             progress={props.currentMacro.kcal ? Number(props.currentMacro.kcal.replace(',','.')) / Number(props.goalMacro.kcal.replace(',','.')) : 0}
-            text={props.currentMacro.kcal? `${props.currentMacro.kcal} Kcal`: '0 Kcal'}
+            text={props.currentMacro.kcal? `${parseFloat(props.currentMacro.kcal).toFixed(2)} Kcal`: '0 Kcal'}
             animation={false}
         />
         )
