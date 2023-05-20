@@ -6,8 +6,6 @@ import { RequestsClient } from '../../API/RequestsClient';
 import { HomeContext } from '../../Context/HomeContext';
 import RegistredFood from '../../model/RegistredFood';
 
-
-
 export default function CoutingMacro(props: CoutingMacroProps) {
     const water = props.goalMacro.water! || 0
     const protein = props.goalMacro.protein! || 0;
@@ -20,18 +18,6 @@ export default function CoutingMacro(props: CoutingMacroProps) {
     function toggleExpanded() {
         setExpanded(!expanded);
     }
-    
-    // const handleAddWater = async () => {
-    //     try {
-    //       const response = await axios.post('/api/v1/food', { water: 100 }); 
-    //           console.log(response.data); 
-
-    //       // const updatedWaterValue = response.data.water;
-    //       // props.setCurrentMacro({ ...props.currentMacro, water: updatedWaterValue });
-    //     } catch (error) {
-    //       console.error('Erro ao adicionar água:', error);
-    //     }
-    //   };
 
     const handleQuantity = (event: { target: { value: any; }; }) => {
         setFormData({ ...formData, quantity: event.target.value })
@@ -66,8 +52,8 @@ export default function CoutingMacro(props: CoutingMacroProps) {
                         <button onClick={() => {toggleExpanded()}} id="buttonExpand">+</button>
                 </div>
         {expanded &&    
-                    <div id='teste'>
-                        <div id='newTeste'>
+                    <div id='div-agua'>
+                        <div id='input-agua'>
                             <input id='inputData' onChange={handleQuantity} placeholder='Digite a quantidade de agua: '></input>
                             <button id='addButton' onClick={registerWater}>Adicionar</button>
                         </div>
