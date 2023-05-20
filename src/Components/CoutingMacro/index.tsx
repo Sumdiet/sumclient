@@ -32,8 +32,6 @@ export default function CoutingMacro(props: CoutingMacroProps) {
             setExpanded(!expanded);
         });
       };
-        
-    console.log(props.water)
 
     return(
         <section className='macros'>

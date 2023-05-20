@@ -4,6 +4,9 @@ import Calendar from '../Calendar';
 import React, { useState } from 'react';
 import { HomeContext } from '../../Context/HomeContext';
 import { IoMdAddCircle } from 'react-icons/io';
+import Macro from '../../model/Macro';
+import { RequestsClient } from '../../API/RequestsClient';
+
 export default function Resume(props: ResumeProps) {
     const mealDone = () => {
         let countDone = 0;
@@ -17,6 +20,7 @@ export default function Resume(props: ResumeProps) {
         });
         return [countDone, countRest];
     }
+
     const [openedCalendar, setOpenedCalendar] = useState(false);
     const { date } = React.useContext(HomeContext);
     const result = mealDone();
@@ -25,18 +29,30 @@ export default function Resume(props: ResumeProps) {
     }
 
     //Botão de editar meta:
-    const [expanded, setExpanded] = useState(false);
-    function toggleExpanded() {
-        setExpanded(!expanded);
-    } 
+        const [expanded, setExpanded] = useState(false);
+        function toggleExpanded() {
+            setExpanded(!expanded);
+        } 
 
     //Coleta dos dados do input:
-    // const [formData, setFormData] = useState({foodId:4, mealId: 1} as RegistredFood);  
-    const handleQuantity = (event: { target: { value: any; }; }) => {
-        // setFormData({ ...formData, quantity: event.target.value })
-    }
-    //Botão para salvar metas:
+           const [formData, setFormData] = useState({macroId: 0} as Macro);  
+           const handleQuantity = (event: { target: { value: any; }; }) => {
+                setFormData({ ...formData, kcal: event.target.value })
+                setFormData({ ...formData, fat: event.target.value })
+                setFormData({ ...formData, protein: event.target.value })
+                setFormData({ ...formData, carbs: event.target.value })
+                setFormData({ ...formData, water: event.target.value })
+            }
 
+    //Botão para salvar metas:
+    const registerGoal = () => {
+        // const userId = localStorage.getItem('idUser')
+        // // const registerGoal = {...formData, userId: Number(userId) , date:date} as Macro;
+        // // // RequestsClient.postRegisterFood(registerGoal).then(() => {
+        // // //     setReload(!reload);
+        // // //     setExpanded(!expanded);
+        // // // });
+      };
 
     return (
         <div id="resume">
@@ -59,7 +75,7 @@ export default function Resume(props: ResumeProps) {
                                 <input id='carbs' onChange={handleQuantity} placeholder='Digite a meta de Carboidratos:'></input>
                                 <input id='fat' onChange={handleQuantity} placeholder='Digite a meta de Gordura: '></input>
                                 <input id='water' onChange={handleQuantity} placeholder='Digite a meta de consumo de Água: '></input>
-                                <button id='salvar-metas'>Salvar</button>
+                                <button id='salvar-metas' onClick={registerGoal}>Salvar</button>
                             </div>
                         </div>
                         }
