@@ -34,7 +34,7 @@ export default function Login() {
                     // if ((res as UserFinded).userInformation !== null) {
                         navigate('/home');
                     // } else  {
-                    //     // navigate('/questionario');
+                        // navigate('/questionario');
                     // }
                 }
                 else
