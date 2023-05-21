@@ -45,7 +45,9 @@ export default function MealCard(props: MealCardProps) {
     const listarAlimento = () => {
         return(
         food.map(food => {
-          return   <option key={food.foodId} value={food.foodId}>{food.foodName}</option>
+            if (food.foodName != "Água") {
+                return   <option key={food.foodId} value={food.foodId}>{food.foodName}</option>
+            }
         }))
     }
     
@@ -71,9 +73,11 @@ export default function MealCard(props: MealCardProps) {
         if (props.registeredFood != null) {
              props.registeredFood.forEach(registeredFood => {
                 if (registeredFood.mealId  == props.mealId) {
-                    row.push(
-                        <RegisterFoodItem registerFood={registeredFood}></RegisterFoodItem>
-                    )}
+                    if (registeredFood.foodId != 4) {
+                        row.push(
+                            <RegisterFoodItem registerFood={registeredFood}></RegisterFoodItem>
+                        )}
+                    }
             })
         }
         return row;
