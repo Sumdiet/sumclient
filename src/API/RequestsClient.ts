@@ -6,6 +6,7 @@ import RegistredFood from "../model/RegistredFood";
 import useDate from "../Utils/useData";
 import Food from "../model/Food";
 import CreateUser from "../ViewModel/CreateUser";
+import UpdateMacroGoal from "../ViewModel/UpdateMacroGoal";
 
 const createUser = async(user: CreateUser) => {
     const jwtStr = localStorage.getItem('token')
@@ -93,6 +94,15 @@ const postRegisterFood = async (registerFood: RegistredFood) => {
     return resApi;
 }
 
+const UpdateMacroGoal = async (macro: UpdateMacroGoal) => {
+    const jwtStr = localStorage.getItem('token');
+    await Api().put('api/v1/macro', macro, {
+        'headers': {
+          'Authorization': 'Bearer ' + jwtStr
+        }}).then((res) => {
+            return res.data;
+        });
+}
 
 export const RequestsClient = {
    postLogin,
@@ -101,4 +111,6 @@ export const RequestsClient = {
    postRegisterFood,
    deleteRegisterFood,
    createUser,
+   UpdateMacroGoal
+   
 }

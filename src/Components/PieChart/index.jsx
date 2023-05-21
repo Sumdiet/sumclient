@@ -1,9 +1,9 @@
 import { Pie } from 'react-chartjs-2';
 import './style.sass'
 const PieChartComponent = (props) => {
+  console.log('po', props);
   
-  const data = [Number(props.currentMacro.protein.replace(',','.')), Number(props.currentMacro.carbs.replace(',','.')), Number(props.currentMacro.fat.replace(',','.'))];
-  console.log(data, 'po', props);
+  const data = [Number((props.currentMacro.protein || '0').replace(',','.')), Number((props.currentMacro.carbs || '0').replace(',','.')), Number((props.currentMacro.fat || '0').replace(',','.'))];
   const chartData = {
     labels: ['Proteína', 'Carboidrato', 'Gordura'],
     datasets: [
