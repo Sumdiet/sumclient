@@ -11,7 +11,7 @@ export default function CoutingMacro(props: CoutingMacroProps) {
     const protein = props.goalMacro.protein! || 0;
     const carb = props.goalMacro.carbs! || 0;
     const fat = props.goalMacro.fat! || 0;
-    const {reload, date, setReload} = useContext(HomeContext)
+    const {reload, date, setReload, user} = useContext(HomeContext)
 
     const [expanded, setExpanded] = useState(false);
     
@@ -23,7 +23,7 @@ export default function CoutingMacro(props: CoutingMacroProps) {
         setFormData({ ...formData, quantity: event.target.value })
     }
 
-    const [formData, setFormData] = useState({foodId:4, mealId: 1} as RegistredFood);  
+    const [formData, setFormData] = useState({foodId:4, mealId: user!.meals[0].mealId} as RegistredFood);  
     const registerWater = () => {
         const userId = localStorage.getItem('idUser')
         const registerFoodVm = {...formData, userId: Number(userId) , date:date} as RegistredFood;
